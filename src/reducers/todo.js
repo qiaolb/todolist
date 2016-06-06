@@ -50,10 +50,12 @@ export default function todo(state = initialState, action) {
       let todos = [...state.todos];
       let index = todos.indexOf(selected);
       if (todos[index].selected) {
-        //todos[index] = {text: todos[index].text};
-        delete todos[index].selected;
+        todos[index] = {text: todos[index].text};
+        // delete todos[index].selected;
       } else {
-        todos[index].selected = true;
+        // 不能直接修改,需要创建一个新的对象
+        // todos[index].selected = true;
+        todos[index] = { text: todos[index].text, selected: true };
       }
 
       dataSource = state.dataSource.cloneWithRows(todos);
